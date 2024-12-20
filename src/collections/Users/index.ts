@@ -12,7 +12,7 @@ export const Users: CollectionConfig = {
     update: authenticated,
   },
   admin: {
-    defaultColumns: ['name', 'email'],
+    defaultColumns: ['photo', 'name', 'role', 'email'],
     useAsTitle: 'name',
   },
   auth: true,
@@ -20,6 +20,16 @@ export const Users: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+    },
+    {
+      name: 'role',
+      type: 'text',
+    },
+    {
+      name: 'photo',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
     },
   ],
   timestamps: true,
