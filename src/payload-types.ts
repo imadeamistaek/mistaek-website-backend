@@ -404,10 +404,12 @@ export interface Post {
     | {
         id?: string | null;
         name?: string | null;
+        photo: string | Media;
       }[]
     | null;
   slug?: string | null;
   slugLock?: boolean | null;
+  featureImage: string | Media;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -918,9 +920,11 @@ export interface PostsSelect<T extends boolean = true> {
     | {
         id?: T;
         name?: T;
+        photo?: T;
       };
   slug?: T;
   slugLock?: T;
+  featureImage?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

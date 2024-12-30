@@ -16,6 +16,7 @@ import { Code } from '../../blocks/Code/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { populateAuthors } from './hooks/populateAuthors'
+import { populateRelatedPosts } from './hooks/populateRelatedPosts'
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost'
 
 import {
@@ -211,13 +212,28 @@ export const Posts: CollectionConfig<'posts'> = {
           name: 'name',
           type: 'text',
         },
+        {
+          name: 'photo',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
       ],
     },
     ...slugField(),
+    {
+      name: 'featureImage',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+      admin: {
+        position: 'sidebar',
+      },
+    },
   ],
   hooks: {
     afterChange: [revalidatePost],
-    afterRead: [populateAuthors],
+    afterRead: [populateAuthors, populateRelatedPosts],
     afterDelete: [revalidateDelete],
   },
   versions: {
