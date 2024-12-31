@@ -81,7 +81,9 @@ export default buildConfig({
     ...plugins,
     s3Storage({
       collections: {
-        media: true,
+        media: {
+          prefix: `https://${process.env.S3_BUCKET}.s3.${process.env.S3_REGION}.amazonaws.com/`, // Add a prefix for the media URLs
+        },
       },
       bucket: process.env.S3_BUCKET as string,
       config: {
