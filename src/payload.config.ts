@@ -73,9 +73,11 @@ export default buildConfig({
     Users,
   ],
   cors: [
-    'http://localhost:5173', // Allow SvelteKit dev server
-    'https://mistaek.com', // Allow production frontend domain
-  ],
+    'http://localhost:5173', // SvelteKit dev server
+    'https://mistaek.com',   // Production domain
+    'https://mistaek-lp-git-preview-andres-projects-e4f6736a.vercel.app', // Vercel preview URL
+    'https://mistaek-backend.onrender.com', // Backend URL for frontend communication
+  ],  
   globals: [Header, Footer],
   plugins: [
     ...plugins,
